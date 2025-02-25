@@ -21,16 +21,15 @@ class MyTest extends BaseTest {
                 await this.driver.get(site_url+"/admin/login/");
 
                 // 2 posar usuari i pass
-                await this.driver.findElement(By.name("username")).sendKeys(username);
+                await this.driver.findElement(By.name("username")).sendKeys("A");
                 await this.driver.findElement(By.name("password")).sendKeys(password);
 
                 // 3 boto send .click()
                 await this.driver.findElement(By.xpath("//input[@value='Iniciar sessió']")).click();
 
-                // 4 cerrar sessió
-                await this.driver.sleep(1000);
-                await this.driver.findElement(By.xpath("//button[@type='submit']")).click();
+                var errorText = await this.driver.findElement(By.className("errornote")).getText();
 
+                console.log("ERROR MESSAGE: "+errorText);
                 console.log("TEST OK");
         }
 }
